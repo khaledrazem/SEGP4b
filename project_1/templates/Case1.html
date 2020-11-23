@@ -1,0 +1,166 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--tab title-->
+        <title>
+            Research Website
+        </title>
+        <!--style sheet-->
+		<link rel="stylesheet" href="{% static 'research_styles.css' %}">
+        <!--icon library-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+	
+    <body>
+        <!--nav bar class-->
+        <div class="navbar">
+            <!--nav bar contents-->
+            <ul>
+                <li class="navlist"><a class="WebName" href="../">
+                    <i>Website Name.
+                    </i>
+                </a></li>
+                <li class="navlist"><a class="navlink" href="/Topics">
+                    Topics
+                </li>
+				<li class="navlist"><a class="navlink" href="/About">
+                    About
+                </li>
+                <!--add more if needed to nav bar-->
+            </ul>
+        <!--nav bar div end-->    
+        </div>
+        
+        <!--main page class-->
+        <div class="main">
+            <p>
+                <!--website title-->
+                <a class="title">
+                    Website Name.
+                </a>
+                <!--link 2-->
+                <a class="case" href="../Case2">
+                    Case 2   
+                </a>
+                <!--divider-->
+                <a class="case">&nbsp;|&nbsp; 
+                </a>
+                <!--link 1-->
+                <a class="case" href="/">
+                    Case 1
+                </a>
+            </p>
+            <p class="summary">
+                Enter multiple entities (max. 5) to begin your search. 
+            </p>
+            <!--ADD/DELETE entities-->
+            <div class="header">
+                <!--inside text-->
+                <input class="inputsearchbar" type="text" id="myInput" placeholder="Enter entity (max 5)">
+                <span onclick="newElement()" class="Add">Add</span><br><br>
+            </div>
+			
+			<div class="quicksearch">
+				<input type="checkbox" id="quicksearch" name="quicksearch" checked>
+				<label for="quicksearch">Quick Search</label><br><br>
+			</div>
+			
+            </br>
+            <div class="elist">
+            <ul id="myUL" class="entities">
+                <li class="entitylist">Deep Learning</li>
+                <li class="entitylist">Block Chain</li>
+                <li class="entitylist">Privacy</li>
+            </ul>
+            <ul class="send">
+                <li>
+                    <a href="/Results1">Send</a>
+                </li>
+            </ul>
+            </div>
+            <!--2nd title-->
+            <!--POPULAR KEYWORDS to suggest to users-->
+            <!--other features-->
+			
+			<!-- Like feature coding -->
+			<!-- List of liked words/phrases coding -->
+			<ul class="likelist">
+				<li><div class="like">Liked Lists e.g.</div></li>
+				<li>Deep Learning</li>
+				<li>BlockChain</li>
+				<li>Data Mining</li>
+				<li>Artifial Intelligence</li>
+				<li>Centralized</li>
+				<li>Decentralized</li>
+				<li>Internet security</li>
+				<li>Privacy</li>
+				<li>Solar Energy</li>
+				<li>Renewable Energy</li>
+			</ul>			
+		<!--main div end-->
+        </div>
+        
+        <!--JAVASCRIPT-->
+        <script>
+            //Create a "close" button and append it to each list item
+            var myNodelist = document.getElementsByClassName("entitylist");
+            var i;
+            for (i = 0; i < myNodelist.length; i++) {
+                var span = document.createElement("SPAN");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close";
+                span.appendChild(txt);
+                myNodelist[i].appendChild(span);
+            }//end for loop
+
+            // Click on a close button to hide the current list item
+            var close = document.getElementsByClassName("close");
+            var i;
+            for (i = 0; i < close.length; i++) {
+                close[i].onclick = function() {
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                }
+            }//end for loop
+
+            //ADD function to append new entities in list
+            function newElement() {
+                var li = document.createElement("li");
+                var inputValue = document.getElementById("myInput").value;
+                var t = document.createTextNode(inputValue);
+                li.appendChild(t);
+                if (inputValue === '') {
+                    alert("You must write something!");
+                }//end if  
+                else {
+                    document.getElementById("myUL").appendChild(li);
+                }//end else
+                document.getElementById("myInput").value = "";
+
+                var span = document.createElement("SPAN");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close";
+                span.appendChild(txt);
+                li.appendChild(span);
+
+                for (i = 0; i < close.length; i++) {
+                    close[i].onclick = function() {
+                        var div = this.parentElement;
+                        div.style.display = "none";
+                    }
+                }//end for loop
+            }//end function
+        </script>
+
+    <!--body end-->
+    </body>
+	<footer>
+	<div class="footer">
+		<span class="left">Contact Email : <a href="mailto:hfyma6@nottingham.edu.my">hfyma6@nottingham.edu.my</a></span>
+		<span class="right">Created by SEGP Group 4B</span>​
+	</div>
+	</footer>
+</html>
